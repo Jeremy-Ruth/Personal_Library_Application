@@ -1,0 +1,579 @@
+﻿<Window x:Class="PersonalLibraryApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:PersonalLibraryApp"
+        mc:Ignorable="d"
+        Title="Library App" Height="800" Width="1100" MinHeight="750" MinWidth="1100"
+        WindowStyle="None" ResizeMode="CanResize" Visibility="Visible" AllowsTransparency="True" UseLayoutRounding="True"
+        MouseDown="MakeAppDraggable"
+        >
+
+    <!-- Window modification to regain resizing and proper maximize size. Necessary due to removing the default menu bar and window commands -->
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0" UseAeroCaptionButtons="False" ResizeBorderThickness="7"/>
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <ResourceDictionary Source="resources/Styles.xaml" />
+    </Window.Resources>
+
+    <Grid>
+        <!-- Primary grid definition for the window -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300px" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF46334D" Offset="1"/>
+                    <GradientStop Color="#FF633C6E"/>
+                </RadialGradientBrush>
+            </Grid.Background>
+            <!-- Left side vertical menu region of the GUI -->
+            <Border Width="20" HorizontalAlignment="Right" >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#0046334D" Offset="0" />
+                        <GradientStop Color="#1E1621" Offset="0.9" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Grid>
+                <!-- Define the app title and main menu regions -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="85px"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <!-- App Title region of the left sidebar -->
+                    <Grid>
+                        <!-- Define the app title and logo regions -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="165px"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0" >
+                            <!-- App title section -->
+                            <TextBlock Foreground="White" FontSize="20" FontWeight="Normal" Margin="18,22,0,0">The Library App</TextBlock>
+                        </Grid>
+                        <!-- END title section -->
+                        <Grid Grid.Row="0" Grid.Column="1" Margin="0,0,20,10" VerticalAlignment="Stretch" Width="116" Height="81">
+                            <!-- App logo section -->
+                            <Canvas Width="116" Height="81">
+                                <!-- Canvas for logo -->
+                                <Path Canvas.Left="-56px"
+                                      Canvas.Top="-118px" 
+                                      Name="LeftBracket" 
+                                      Fill="#fff0a30a" 
+                                      StrokeThickness="3.4" >
+                                    <Path.Data>
+                                        <PathGeometry Figures="m 71.879642 177.13403 q -7.615039 -0.0992 -7.615039 -7.68946 v -7.4414 q 0 -5.01055 -3.869531 -5.2586 v -2.87734 q 3.869531 -0.24805 3.869531 -5.35781 v -7.24297 q 0 -7.68945 7.615039 -7.78867 v 3.175 
+                                              q -3.943945 0.0992 -3.943945 4.91133 v 7.26777 q 0 5.20898 -3.720703 6.39961 v 0.0992 q 3.720703 1.11621 3.720703 6.35 v 7.16855 q 0 2.75332 0.868164 3.91914 0.892969 1.19063 3.075781 1.24024 z" />
+                                    </Path.Data>
+                                </Path>
+                                <Path Fill="#fff0a30a"
+                                      Stroke="#ff2e2233">
+                                    <Path.Data>
+                                        <RectangleGeometry Rect="20,13.3,14.46,47.83" RadiusX="2.17" RadiusY="2.17" />
+                                    </Path.Data>
+                                </Path>
+                                <Path Fill="#fff0a30a"
+                                      Stroke="#ff2e2233">
+                                    <Path.Data>
+                                        <RectangleGeometry Rect="36,13.3,9.04,47.83" RadiusX="1.36" RadiusY="1.36" />
+                                    </Path.Data>
+                                </Path>
+                                <Path Fill="#fff0a30a"
+                                      Stroke="#ff2e2233">
+                                    <Path.Data>
+                                        <RectangleGeometry Rect="46.21,51.57,47.83,9.04" RadiusX="1.36" RadiusY="1.36" />
+                                    </Path.Data>
+                                </Path>
+                                <Path Fill="#fff0a30a"
+                                      Stroke="#ff2e2233">
+                                    <Path.Data>
+                                        <RectangleGeometry Rect="46.24,46.01,34.78,4.07" RadiusX="0.61" RadiusY="0.61" />
+                                    </Path.Data>
+                                </Path>
+                                <Path Fill="#fff0a30a"
+                                      Stroke="#ff2e2233">
+                                    <Path.Data>
+                                        <EllipseGeometry Center="61.82,28.91" RadiusX="15" RadiusY="15" />
+                                    </Path.Data>
+                                </Path>
+                                <Path Fill="#ff46334d"
+                                      Stroke="#ff2e2233">
+                                    <Path.Data>
+                                        <EllipseGeometry Center="62,29" RadiusX="5" RadiusY="5"/>
+                                    </Path.Data>
+                                </Path>
+                                <Path>
+                                    <Path.Data>
+                                        <RectangleGeometry Rect="0,0,18.08,60.87" />
+                                    </Path.Data>
+                                </Path>
+                                <Path>
+                                    <Path.Data>
+                                        <RectangleGeometry Rect="96.34,0,18.08,60.87" />
+                                    </Path.Data>
+                                </Path>
+                                <Path Stroke="#ff2e2233">
+                                    <Path.Data>
+                                        <EllipseGeometry Center="62,28.91" RadiusX="8" RadiusY="8" />
+                                    </Path.Data>
+                                </Path>
+                                <Path Canvas.Left="-3px" 
+                                      Canvas.Top="-118px" 
+                                      Name="RightBracket" 
+                                      Fill="#fff0a30a" 
+                                      StrokeThickness="3.4">
+                                    <Path.Data>
+                                        <PathGeometry Figures="m 112.88259 156.94092 q -3.86953 0.24805 -3.86953 5.2586 v 7.4414 q 0 7.59024 -7.59024 7.68946 v -3.12539 q 2.15801 -0.0496 3.05098 -1.24024 0.91777 -1.19062 0.91777 -3.91914 v -7.16855 
+                                              q 0 -5.23379 3.6959 -6.35 v -0.0992 q -3.6959 -1.19063 -3.6959 -6.39961 v -7.26777 q 0 -4.81211 -3.96875 -4.91133 v -3.175 q 7.59024 0.0992 7.59024 7.78867 v 7.24297 q 0 5.10976 3.86953 5.35781 z" />
+                                    </Path.Data>
+                                </Path>
+                            </Canvas>
+                            <!-- END canvas for logo -->
+                        </Grid>
+                        <!-- END logo section -->
+                    </Grid>
+                    <!-- END app title and logo region definition -->
+                </Grid>
+                <!-- END app title region of the left vertical sidebar -->
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <!-- Main menu section of the sidebar  -->
+                    <StackPanel Orientation="Vertical" Margin="8,12,0,0">
+                        <Button x:Name="LibMainBttn" Style="{StaticResource MenuBttn}" FontSize="28" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Padding="20,0,0,00">Owned Library</Button>
+                        <!-- <Button x:Name="BookLibBttn" Style="{StaticResource MenuBttn}" FontSize="24" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Padding="35,0,0,0" >Books</Button> -->
+                        <!-- <Button x:Name="MovieLibBttn" Style="{StaticResource MenuBttn}" FontSize="24" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,0,10" Padding="35,0,0,0" >Movies</Button> -->
+                        <Button x:Name="WishMainBttn" Style="{StaticResource MenuBttn}" FontSize="28" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Padding="20,0,0,0">Wishlist</Button>
+                        <!-- <Button x:Name="BookWishBttn" Style="{StaticResource MenuBttn}" FontSize="24" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Padding="35,0,0,0" >Books</Button> -->
+                        <!-- <Button x:Name="MovieWishBttn" Style="{StaticResource MenuBttn}" FontSize="24" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,0,10" Padding="35,0,0,0" >Movies</Button> -->
+                        <Button x:Name="SettingsBttn" Style="{StaticResource MenuBttn}" FontSize="28" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Padding="20,0,0,0">Settings</Button>
+                    </StackPanel>
+                </Grid>
+                <!-- END main menu section of sidebar -->
+            </Grid>
+            <!-- END app title and main menu definitions -->
+        </Grid>
+        <!-- END left side vertical menu region of the GUI -->
+        <Grid Grid.Row="0" Grid.Column="1">
+            <!-- Body region of the GUI -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150px"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Background="#FF2A2A2A">
+                <!-- Header of the body section. Sections: window controls, body title and search tools for the current view -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30px"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <!-- Window controls section of the header: Close, minimize, maximize controls -->
+                    <Rectangle Opacity="0.20">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="/resources/DarkNoiseTexture.png" Stretch="None" TileMode="Tile" ViewportUnits="Absolute" ViewboxUnits="RelativeToBoundingBox" Viewport="0,0,128,128"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Border BorderBrush="#FF303030" BorderThickness="1,0,0,0"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+                        <Button x:Name="minBttn" Width="25px" Height="25px" Style="{StaticResource HeaderButton}"
+                                Foreground="#FFC7C7C7" Margin="0,0,5,0" Click="MinimizeAppClick">
+                            <Border Width="15px" Background="Transparent" BorderThickness="0,0,0,3" Padding="0,10,0,0" 
+                                    BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"/>
+                        </Button>
+                        <Button x:Name="maxButton" Width="25px" Height="25px" Margin="0,0,5,0" Style="{StaticResource HeaderButton}" Foreground="#FFC7C7C7" Click="MaximizeAppClick">
+                            <Border Width="18px" Height="16px" BorderThickness="1,4,1,1" Margin="0,5,0,0" Background="Transparent"
+                                    BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"/>
+                        </Button>
+                        <Button x:Name="closeBttn" Width="25px" Height="25px" Style="{StaticResource HeaderButton}"
+                                FontWeight="Bold" FontSize="18" FontFamily="Segoe UI" Click="CloseAppClick">
+                            <Border Margin="6,3,0,0" Width="25px" Height="25px" Background="Transparent" BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}">
+                                <TextBlock>X</TextBlock>
+                            </Border>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <!-- END window controls section of the header -->
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <!-- Content controls section of the header: Search tools, help, etc. -->
+                    <Rectangle Opacity="0.20">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="/resources/DarkNoiseTexture.png" Stretch="None" TileMode="Tile" ViewportUnits="Absolute" ViewboxUnits="RelativeToBoundingBox" Viewport="0,0,128,128"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Border BorderBrush="#FF303030" BorderThickness="1,0,0,0"/>
+                    <Grid>
+                        <!-- Content controls sub-division. Seperate Title and Search from other tools -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="600px" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <!-- Dynamic Title of current view and search tools -->
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="25,0,0,0">
+                                <TextBlock  x:Name="ViewTitle" Foreground="#FFC7C7C7" FontSize="28" Margin="6,0,0,10">Welcome to the Library App</TextBlock>
+                                <Border Height="40px" Width="575px" Background="#FF141414" BorderBrush="#FF383838" BorderThickness="1,1,1,1" Margin="0,0,0,10">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox Height="25px" Width="480px" Name="SearchBar" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6,0,0,0" BorderBrush="{x:Null}" Background="#FFC7C7C7" FontSize="14" Foreground="#FF333333">Place Default Text here</TextBox>
+                                        <Button x:Name="SearchLocal" Width="30" Height="30" Margin="10,0,10,0" Style="{StaticResource HeaderButton}">
+                                            <Border Width="30px" Height="30px" Background="Transparent">
+                                                <Path Data="M 16.43 16.2 C 19.44 16.2 23.42 13.61 23.42 9.22 C 23.42 4.72 19.71 2 16.43 2 C 12.09 2 9.2 5.32 9.2 9.22 C 9.2 13.4 12.87 16.2 16.43 16.2 Z M 3.66 24.61 C 2.69 25.5 1.39 25.44 0.69 24.69 C 0 23.87 0.05 22.72 0.81 21.84 
+                                                  L 6.78 15.86 C 7.3 15.43 8.06 15.14 8.65 15.27 L 9.51 14.42 C 8.53 13.08 7.74 11.56 7.68 9.22 C 7.68 4.88 11.02 0.5 16.43 0.5 C 21.18 0.5 25 4.42 25 9.22 C 25 13.97 20.97 17.74 16.43 17.74 C 14.51 17.71 12.7 17.2 11.05 15.93 
+                                                  L 10.2 16.78 C 10.25 17.45 10.09 18.03 9.66 18.54 Z"
+                                                  Margin="2,3,0,0" Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"/>
+                                            </Border>
+                                        </Button>
+                                        <Button x:Name="SearchOnline" Width="30" Height="30" BorderBrush="{x:Null}" Style="{StaticResource HeaderButton}" Background="{x:Null}">
+                                            <Border Width="30px" Height="30px" Background="Transparent">
+                                                <Canvas>
+                                                    <Path Data="M 1 4.5 L 19 4.5 L 19 25.5 L 1 25.5 Z M 4 13.69 L 7 13.69 M 8.5 13.69 L 16 13.69 M 4 17.63 L 7 17.63 M 8.5 17.63 L 16 17.63 M 4 21.56 L 7 21.56 M 8.5 21.56 L 16 21.56" 
+                                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                      StrokeThickness="2" 
+                                                      StrokeMiterLimit="10"
+                                                      Canvas.Left="2"
+                                                      Canvas.Top="1"/>
+                                                    <Path Data="M 10.18 10.59 C 8 8.41 8 4.87 10.18 2.68 C 12.37 0.5 15.9 0.5 18.09 2.68 C 20.27 0.5 23.81 0.5 25.99 2.68 C 28.17 4.87 28.17 8.41 25.99 10.59 L 18.09 18.5 Z Z" 
+                                                      Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
+                                                      Stroke="#141414" 
+                                                      StrokeThickness="2" 
+                                                      StrokeMiterLimit="10"
+                                                      Canvas.Left="3"
+                                                      Canvas.Top="1"/>
+                                                </Canvas>
+                                            </Border>
+                                        </Button>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                        <!-- END title and search tools section -->
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <!-- Header add-ons: Manual add button and current library view item count -->
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,0,0,12">
+                                <Button x:Name="ManualAddBttn" Background="Transparent" BorderBrush="{x:Null}" HorizontalAlignment="Right" Margin="0,0,20,25" Style="{StaticResource HeaderCntrlBttn}">
+                                    <Border Width="30px" Height="32px" Background="Transparent">
+                                        <Canvas>
+                                            <Path Data="M 1 1 L 19 1 L 19 25 L 10 19 L 1 25 Z M 5.5 10 L 14.5 10 M 10 5.5 L 10 14.5"
+                                                  Fill="Transparent" 
+                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                  StrokeThickness="2"  
+                                                  StrokeMiterLimit="10"
+                                                  Canvas.Top="2"
+                                                  Canvas.Left="5"/>
+                                        </Canvas>
+                                    </Border>
+                                </Button>
+                                <TextBlock x:Name="LibraryBookCount" Foreground="#ff6E6E6E" FontSize="14" HorizontalAlignment="Right" Margin="0,0,27,0">
+                                    Books in library: 00
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                        <!-- END header add-ons -->
+                    </Grid>
+                    <!-- END content controls sub-division -->
+                </Grid>
+                <!-- END content controls section of the header -->
+            </Grid>
+            <!-- END of body section header -->
+            <Grid Grid.Row="1" Grid.Column="0" Background="#FFEEEEEE" >
+                <!-- Content of the body section: Dynamic feed of the library content -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="525px"/>
+                    <!--
+                    <RowDefinition Height="25px" />
+                    -->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!-- END Sort tool section of the dynamic feed -->
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <!-- Preview area of the dynamic feed. This is where the details of a library item or interaction are shown -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="250px"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="120px"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="250px"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="100px"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Row="0">
+                                            <StackPanel Orientation="Vertical" Margin="15,0,0,0" >
+                                                <StackPanel.Resources>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Margin" Value="0,2,0,0"/>
+                                                    </Style>
+                                                </StackPanel.Resources>
+                                                <TextBlock x:Name="DetailBookTitle" FontSize="24" Margin="0,5,0,0" Foreground="#FF343434">Sample Book Title</TextBlock>
+                                                <TextBlock x:Name="DetailISBN" FontSize="18" Foreground="#FF292929">ISBN:</TextBlock>
+                                                <TextBlock x:Name="DetailASIN" FontSize="18" Foreground="#FF292929">ASIN:</TextBlock>
+                                                <TextBlock x:Name="DetailAuthorList" FontSize="18" Foreground="#FF292929">Author(s):</TextBlock>
+                                                <TextBlock x:Name="DetailNumOfPages" FontSize="18" Foreground="#FF292929">Number of Pages:</TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Row="1">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Row="0">
+                                                    <StackPanel Orientation="Horizontal" Margin="15,0,0,0">
+                                                        <Button x:Name="PurchaseBttn" Width="225px" Height="45px" Margin="0,0,10,0" FontSize="22" FontWeight="Bold" BorderBrush="#FF2D7600" Background="#FF60A917" Foreground="White">PURCHASE</Button>
+                                                        <Button x:Name="EditStoreLinkBttn" Width="225px" Height="45px">Edit Store Link</Button>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <Grid Grid.Row="1">
+                                                    <StackPanel Orientation="Horizontal" Margin="15,0,0,0">
+                                                        <Button x:Name="AddToLibBttn" Width="225px" Height="45px" Margin="0,0,10,0" FontSize="22" FontWeight="Bold" BorderBrush="#FF006EAF" Background="#FF1BA1E2" Foreground="#FFFFFFFF">ADD TO LIBRARY</Button>
+                                                        <Button x:Name="RemoveBttn" Width="225px" Height="45px" FontSize="22" FontWeight="Bold" BorderBrush="#FF6F0000" Background="#FFA20025" Foreground="#FFFFFFFF">REMOVE</Button>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30px"/>
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Row="0" Grid.Column="0">
+                                            <StackPanel x:Name="RatingSet" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
+                                                <ToggleButton x:Name="StarRate1" Tag="1" Width="30px" Style="{StaticResource StarRatingBttn}" Click="UpdateStarRating" />
+                                                <ToggleButton x:Name="StarRate2" Tag="2" Width="30px" Style="{StaticResource StarRatingBttn}" Click="UpdateStarRating" />
+                                                <ToggleButton x:Name="StarRate3" Tag="3" Width="30px" Style="{StaticResource StarRatingBttn}" Click="UpdateStarRating" />
+                                                <ToggleButton x:Name="StarRate4" Tag="4" Width="30px" Style="{StaticResource StarRatingBttn}" Click="UpdateStarRating" />
+                                                <ToggleButton x:Name="StarRate5" Tag="5" Width="30px" Style="{StaticResource StarRatingBttn}" Click="UpdateStarRating" />
+                                                <ToggleButton Style="{DynamicResource ClearButton}" x:Name="StarClear" Tag="6" Width="30px" FontSize="8" Padding="0,4,0,0" Click="UpdateStarRating">CLEAR</ToggleButton>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30px"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Row="0" Grid.Column="0">
+                                    <TextBlock x:Name="DescTitle" Foreground="#FF292929" FontSize="18" FontWeight="Normal" Margin="15,5,0,0">Description:</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="0">
+                                    <Border>
+                                        <TextBlock x:Name="DescText" TextWrapping="Wrap" FontSize="14" Foreground="#FF292929" Margin="15,5,5,0">Description text area</TextBlock>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="2" Grid.Column="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30px" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="50px" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <TextBlock x:Name="SeriesTitle" Foreground="#FF292929" FontSize="18" FontWeight="Normal" Margin="15,5,0,0">Part of Series:</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <TextBlock x:Name="SeriesList" TextWrapping="Wrap" FontSize="14" Foreground="#FF292929" Margin="15,5,5,0">List of books in series with current book</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button x:Name="SeriesAddBttn" Width="225px" Height="40px" Margin="15,0,0,5" FontSize="20" FontWeight="Bold" BorderBrush="#FFBD7000" Background="#FFF0A30A" Foreground="#FFFFFFFF">ADD TO SERIES</Button>
+                                        <Button x:Name="SeriesRemoveBttn" Width="225px" Height="40px" Margin="15,0,0,5" FontSize="20" FontWeight="Bold" BorderBrush="#FFBD7000" Background="#FFF0A30A" Foreground="#FFFFFFFF">REMOVE FROM SERIES</Button>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <!-- END preview area of dynamic feed -->
+                <!--
+                <Grid Grid.Row="1" Grid.Column="0">
+                    Sort tool section of the dynamic feed 
+                    <Border Background="#FF3B3B3B">
+                        <Grid>
+                             Button area for list sorting preferences 
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0px"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="25px"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="25px"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="25px"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="25px"/>
+                            </Grid.ColumnDefinitions>
+                            <ToggleButton x:Name="TitleSortBttn" Grid.Column="1" Style="{DynamicResource ListSortByBttn}">Title</ToggleButton>
+                            <ToggleButton x:Name="AscendTitleBttn" Grid.Column="2" Style="{DynamicResource ListAscenderFilter}" />
+                            <ToggleButton x:Name="AuthorSortBttn" Grid.Column="3" Style="{DynamicResource ListSortByBttn}">Author</ToggleButton>
+                            <ToggleButton x:Name="AscendAuthorBttn" Grid.Column="4" Style="{DynamicResource ListAscenderFilter}" />
+                            <ToggleButton x:Name="ISBNBttn" Grid.Column="5" Style="{DynamicResource ListSortByBttn}">ISBN</ToggleButton>
+                            <ToggleButton x:Name="AscendISBNBttn" Grid.Column="6" Style="{DynamicResource ListAscenderFilter}" />
+                            <ToggleButton x:Name="RatingBttn" Grid.Column="7" Style="{DynamicResource ListSortByBttn}">Rating</ToggleButton>
+                            <ToggleButton x:Name="AscendStarBttn" Grid.Column="8" Style="{DynamicResource ListAscenderFilter}" />
+                        </Grid>                        
+                        END List sorting prefernces button area 
+                    </Border>
+                </Grid>
+                 -->
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <!-- List area of the dynamic feed. This is where the total library for the current view is displayed -->
+                    <DataGrid x:Name="CurrentViewList" ItemsSource="{Binding}" IsReadOnly="True"
+                              Background="#FFEEEEEE" BorderBrush="{x:Null}" BorderThickness="0"
+                              RowHeight="25" HorizontalGridLinesBrush="White" VerticalGridLinesBrush="White"
+                              AutoGenerateColumns="False" AlternatingRowBackground="#FFD6D6D6"
+                              Style="{DynamicResource ListDataGridStyle}">
+                        <DataGrid.Columns>                            
+                            <DataGridTextColumn x:Name="ListTitleHeader" Binding="{Binding ObjTitle}" Width="4*" >
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridColumnHeader}}, Path=ActualWidth}">
+                                            <Grid.RowDefinitions />
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="25px" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="0" Grid.Column="0">
+                                                <ToggleButton x:Name="TitleSortBttn" Style="{DynamicResource ListSortByBttn}" >Title</ToggleButton>
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="1">
+                                                <ToggleButton x:Name="AscendTitleBttn" Style="{DynamicResource ListAscenderFilter}" />                                                
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn x:Name="ListCreatorHeader" Header="Author" Binding="{Binding ObjCreator}" Width="3*">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridColumnHeader}}, Path=ActualWidth}">
+                                            <Grid.RowDefinitions />
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="25px" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="0" Grid.Column="0">
+                                                <ToggleButton x:Name="AuthorSortBttn" Style="{DynamicResource ListSortByBttn}">Author</ToggleButton>
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="1">
+                                                <ToggleButton x:Name="AscendAuthorBttn" Style="{DynamicResource ListAscenderFilter}" />
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="ISBN" Binding="{Binding ObjUniqueID}" Width="2*">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridColumnHeader}}, Path=ActualWidth}">
+                                            <Grid.RowDefinitions />
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="25px" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="0" Grid.Column="0">
+                                                <ToggleButton x:Name="ISBNBttn" Style="{DynamicResource ListSortByBttn}">ISBN</ToggleButton>                                                
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="1">
+                                                <ToggleButton x:Name="AscendISBNBttn" Style="{DynamicResource ListAscenderFilter}" />
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Rating" Binding="{Binding ObjStarRating}" Width="1*">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridColumnHeader}}, Path=ActualWidth}">
+                                            <Grid.RowDefinitions />
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="25px" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="0" Grid.Column="0">
+                                                <ToggleButton x:Name="RatingBttn" Style="{DynamicResource ListSortByBttn}">Rating</ToggleButton>                                                
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="1">
+                                                <ToggleButton x:Name="AscendStarBttn" Style="{DynamicResource ListAscenderFilter}" />
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <!--
+                    <TextBlock x:Name="TempListBox" TextWrapping="Wrap"></TextBlock>
+                    -->
+                </Grid>
+                <!-- END List area of the dynamic feed -->
+            </Grid>
+            <!-- END content body section -->
+        </Grid>
+        <!-- END body region of the GUI -->
+    </Grid>
+    <!-- END primary grid definition -->
+</Window>
